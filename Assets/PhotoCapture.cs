@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+
 public class PhotoCapture : MonoBehaviour
 {
     public int filmCount = 10;
@@ -12,12 +13,14 @@ public class PhotoCapture : MonoBehaviour
     public GameObject pastWorld;
 
     private bool isPresent = true;
+
     void Update()
+    {
         if (Input.GetKeyDown(switchKey))
-{
-    SwitchTime();
-}
-{
+        {
+            SwitchTime();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             TakePhoto();
@@ -27,7 +30,7 @@ public class PhotoCapture : MonoBehaviour
             }
         }
     }
-    
+
     void TakePhoto()
     {
         if (filmCount <= 0)
@@ -48,17 +51,19 @@ public class PhotoCapture : MonoBehaviour
             Instantiate(flashEffect, transform.position, transform.rotation);
         }
     }
+
     IEnumerator FlashUICO()
     {
         flashUI.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         flashUI.SetActive(false);
     }
-void SwitchTime()
-{
-    isPresent = !isPresent;
-    presentWorld.SetActive(isPresent);
-    pastWorld.SetActive(!isPresent);
-    Debug.Log(isPresent ? "Настоящее" : "Прошлое");
-}
+
+    void SwitchTime()
+    {
+        isPresent = !isPresent;
+        presentWorld.SetActive(isPresent);
+        pastWorld.SetActive(!isPresent);
+        Debug.Log(isPresent ? "Настоящее" : "Прошлое");
+    }
 }
